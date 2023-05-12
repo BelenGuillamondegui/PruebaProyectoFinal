@@ -123,7 +123,7 @@ input {
 label {
   box-sizing: border-box;
   display: inline-block;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 5px;
   width: 30px;
   height: 30px;
@@ -136,12 +136,12 @@ label {
 
 /* Estilo del boton cuando se pasa el mouse por encima*/
 label:hover{
-  background: grey;
+  background: white;
 }
 
 /* Estilo del boton cuando el menú está expandido*/
 input:checked ~ label {
-  background: lightgrey; 
+  background: rgb(230, 221, 221); 
 }
 
 ul{
@@ -150,22 +150,36 @@ ul{
   width: 200px;
   position: absolute;
 right: 1px;
+
+
+background-color: white;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 
 li {
   display: block;
-  background: lightgrey;
+  background: white;
   margin: 0;
   padding: 10px;
   list-style: none;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid  rgba(29, 190, 180, 1);
+  border-radius: 5px;
+  color:rgba(29, 190, 180, 1) ;
+  transition:  0.3s ease;
+  font-size: 16px;
+
 }
 
 /*Estilo cuando el mouse pasa encima de cada link del menu*/
 li:hover {
-  filter: brightness(110%);
+  color:  rgba(29, 190, 180, 1);
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 18px;
 }
+
 
 
 
