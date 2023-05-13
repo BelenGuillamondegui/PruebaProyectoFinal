@@ -6,9 +6,8 @@ const Footer = () => {
       <div className="footerContainer">
         <div className="isologotipo">
           
-          <img src="./isologotipo.png" alt="isologotipo de Digital Booking" />
-          <img src="./lema.png" alt="lema de Digital Booking" />
-          
+          <img className="logo" src="./isologotipo.png" alt="isologotipo de Digital Booking" />
+          <img className="lema" src="./lema.png" alt="lema de Digital Booking" />
           <img
             className="copyright"
             src="./copyright.png"
