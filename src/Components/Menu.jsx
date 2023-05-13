@@ -29,7 +29,7 @@ const Menu = () => {
     <div>
       <nav>
         <input type="checkbox" id="menu" />
-        <label for="menu">
+        <label className="menuIcon" for="menu">
           {" "}
           ☰ {" "}
         </label>
