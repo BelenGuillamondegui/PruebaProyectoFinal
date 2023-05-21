@@ -48,3 +48,10 @@
 .form-submit-button:hover {
   background-color: #45a049;
 }
+.rating{
+  color: #4caf50;
+  cursor: pointer;
+ font-size: 24px;
+display: inline-block;
+margin-right:  5px;
+}
