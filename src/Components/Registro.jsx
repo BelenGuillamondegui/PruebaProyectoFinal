@@ -54,7 +54,7 @@ const [formErrors, setFormErrors] = useState({
         }
     
         if (!user.contrasenia) {
-          errors.password = 'La contraseña es obligatoria';
+          errors.contrasenia = 'La contraseña es obligatoria';
           valid = false;
         } else if (user.contrasenia.length < 6) {
           errors.contrasenia = 'La contraseña debe tener al menos 6 caracteres';
@@ -87,51 +87,51 @@ const [formErrors, setFormErrors] = useState({
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>Nombre</label>
-        <input
+      <form className="form-container" onSubmit={handleSubmit}>
+        <label className="form-label">Nombre</label>
+        <input className="form-input"
           type="text"
           onChange={(event) =>
             setUser({ ...user, nombre: event.target.value })
         }
         
         />
-        {formErrors.nombre && <span className="error">{formErrors.nombre}</span>}
-        <label>Apellido</label>
-        <input
+        {formErrors.nombre && <span className="form-error">{formErrors.nombre}</span>}
+        <label className="form-label">Apellido</label>
+        <input className="form-input"
           type="text"
           onChange={(event) =>
             setUser({ ...user, apellido: event.target.value })
           }
         />
-        {formErrors.apellido && <span className="error">{formErrors.apellido}</span>}
+        {formErrors.apellido && <span className="form-error">{formErrors.apellido}</span>}
 
-        <label>Email</label>
-        <input
+        <label className="form-label">Email</label>
+        <input className="form-input"
           type="email"
           onChange={(event) => setUser({ ...user, email: event.target.value })}
         />
-        {formErrors.email && <span className="error">{formErrors.email}</span>}
+        {formErrors.email && <span className="form-error">{formErrors.email}</span>}
 
-        <label>Contraseña</label>
-        <input
+        <label className="form-label">Contraseña</label>
+        <input className="form-input"
           type="password"
           onChange={(event) =>
             setUser({ ...user, contrasenia: event.target.value })
           }
         />
-        {formErrors.contrasenia && <span className="error">{formErrors.contrasenia}</span>}
-        <label>Verifique la contraseña</label>
-        <input
+        {formErrors.contrasenia && <span className="form-error">{formErrors.contrasenia}</span>}
+        <label className="form-label">Verifique la contraseña</label>
+        <input className="form-input"
           type="password"
           onChange={(event) =>
             setUser({ ...user, verificarContrasenia: event.target.value })
           }
         />
-        {formErrors.verificarContrasenia && <span className="error">{formErrors.verificarContrasenia}</span>}
+        {formErrors.verificarContrasenia && <span className="form-error">{formErrors.verificarContrasenia}</span>}
 
 
-        <button className="favButton">Enviar</button>
+        <button className="form-submit-button">Enviar</button>
     </form>
     </>
   );
