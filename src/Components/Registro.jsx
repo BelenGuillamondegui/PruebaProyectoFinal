@@ -40,13 +40,21 @@ const [formErrors, setFormErrors] = useState({
         if (!user.nombre) {
           errors.nombre = 'El nombre es obligatorio';
           valid = false;
+        }else if (user.nombre.trim() !== user.nombre) {
+            errors.nombre = 'El nombre no debe contener espacios al principio';
+            valid = false;
         } else if (!nameRegex.test(user.nombre)) {
             errors.nombre = 'El nombre solo debe contener letras';
             valid = false;
-        }
+          }
+
+
         if (!user.apellido) {
           errors.apellido = 'El apellido es obligatorio';
           valid = false;
+        }else if (user.apellido.trim() !== user.apellido) {
+            errors.apellido = 'El apellido no debe contener espacios al principio';
+            valid = false;
         } else if (!nameRegex.test(user.apellido)) {
             errors.apellido = 'El apellido solo debe contener letras';
             valid = false;
@@ -63,17 +71,26 @@ const [formErrors, setFormErrors] = useState({
         if (!user.contrasenia) {
           errors.contrasenia = 'La contraseña es obligatoria';
           valid = false;
+        }else if (user.contrasenia.trim() !== user.contrasenia) {
+            errors.contrasenia = 'La contraseña no debe contener espacios al principio';
+            valid = false; 
         } else if (user.contrasenia.length < 6) {
-          errors.contrasenia = 'La contraseña debe tener al menos 6 caracteres';
-          valid = false;
+            errors.contrasenia = 'La contraseña debe tener al menos 6 caracteres';
+            valid = false;
         } else if (!passwordRegex.test(user.contrasenia)) {
             errors.contrasenia = 'La contraseña debe contener letras y números';
             valid = false;
+        } else if (user.password.includes(' ')) {
+            errors.contrasenia = 'La contraseña no debe contener espacios en blanco';
+            valid = false;
         }
-        
+
         if (!user.verificarContrasenia) {
           errors.verificarContrasenia = 'Debes confirmar la contraseña';
           valid = false;
+        }else if (user.verificarContrasenia.trim() !== user.verificarContrasenia) {
+            errors.verificarContrasenia = 'La contraseña no debe contener espacios al principio';
+            valid = false; 
         } else if (user.contrasenia !== user.verificarContrasenia) {
           errors.verificarContrasenia = 'Las contraseñas no coinciden';
           valid = false;
