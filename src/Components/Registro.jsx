@@ -34,16 +34,23 @@ const [formErrors, setFormErrors] = useState({
           contrasenia: '',
           verificarContrasenia: '',
         };
+        const nameRegex = /^[a-zA-Z]+$/; // Expresión regular para solo letras
+  const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/; // Expresión regular para letras y números
     
         if (!user.nombre) {
           errors.nombre = 'El nombre es obligatorio';
           valid = false;
+        } else if (!nameRegex.test(user.nombre)) {
+            errors.nombre = 'El nombre solo debe contener letras';
+            valid = false;
         }
-    
         if (!user.apellido) {
           errors.apellido = 'El apellido es obligatorio';
           valid = false;
-        }
+        } else if (!nameRegex.test(user.apellido)) {
+            errors.apellido = 'El apellido solo debe contener letras';
+            valid = false;
+          }
     
         if (!user.email) {
           errors.email = 'El email es obligatorio';
@@ -59,8 +66,11 @@ const [formErrors, setFormErrors] = useState({
         } else if (user.contrasenia.length < 6) {
           errors.contrasenia = 'La contraseña debe tener al menos 6 caracteres';
           valid = false;
+        } else if (!passwordRegex.test(user.contrasenia)) {
+            errors.contrasenia = 'La contraseña debe contener letras y números';
+            valid = false;
         }
-    
+        
         if (!user.verificarContrasenia) {
           errors.verificarContrasenia = 'Debes confirmar la contraseña';
           valid = false;
