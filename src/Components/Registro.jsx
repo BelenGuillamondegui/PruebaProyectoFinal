@@ -34,17 +34,21 @@ const [formErrors, setFormErrors] = useState({
           contrasenia: '',
           verificarContrasenia: '',
         };
-        const nameRegex = /^[a-zA-Z]+$/; // Expresión regular para solo letras
+        const nameRegex = /^[a-zA-ZáÁéÉíÍóÓúÚñÑüÜ'][a-zA-ZáÁéÉíÍóÓúÚñÑüÜ\s']*$/;
+
+        // /^[a-zA-ZáÁéÉíÍóÓúÚñÑüÜ']{1}[a-zA-ZáÁéÉíÍóÓúÚñÑüÜ\s']*$/;
+
+     
   const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/; // Expresión regular para letras y números
     
         if (!user.nombre) {
           errors.nombre = 'El nombre es obligatorio';
           valid = false;
         }else if (user.nombre.trim() !== user.nombre) {
-            errors.nombre = 'El nombre no debe contener espacios al principio';
-            valid = false;
-        } else if (!nameRegex.test(user.nombre)) {
-            errors.nombre = 'El nombre solo debe contener letras';
+          errors.nombre = 'El nombre no debe contener espacios al principio';
+          valid = false;
+          }else if (!nameRegex.test(user.nombre)) {
+            errors.nombre = 'El nombre contiene caracteres no válidos';
             valid = false;
           }
 
@@ -56,13 +60,13 @@ const [formErrors, setFormErrors] = useState({
             errors.apellido = 'El apellido no debe contener espacios al principio';
             valid = false;
         } else if (!nameRegex.test(user.apellido)) {
-            errors.apellido = 'El apellido solo debe contener letras';
+            errors.apellido = 'El apellido contiene caracteres no válidos';
             valid = false;
           }
     
         if (!user.email) {
           errors.email = 'El email es obligatorio';
-          valid = false;
+         valid = false; 
         } else if (!/\S+@\S+\.\S+/.test(user.email)) {
           errors.email = 'El email no es válido';
           valid = false;
@@ -72,7 +76,7 @@ const [formErrors, setFormErrors] = useState({
           errors.contrasenia = 'La contraseña es obligatoria';
           valid = false;
         }else if (user.contrasenia.trim() !== user.contrasenia) {
-            errors.contrasenia = 'La contraseña no debe contener espacios al principio';
+            errors.contrasenia = 'La contraseña no debe contener espacios';
             valid = false; 
         } else if (user.contrasenia.length < 6) {
             errors.contrasenia = 'La contraseña debe tener al menos 6 caracteres';
@@ -80,9 +84,7 @@ const [formErrors, setFormErrors] = useState({
         } else if (!passwordRegex.test(user.contrasenia)) {
             errors.contrasenia = 'La contraseña debe contener letras y números';
             valid = false;
-        } else if (user.password.includes(' ')) {
-            errors.contrasenia = 'La contraseña no debe contener espacios en blanco';
-            valid = false;
+        
         }
 
         if (!user.verificarContrasenia) {
@@ -115,7 +117,7 @@ const [formErrors, setFormErrors] = useState({
   return (
     <>
       <form className="form-container" onSubmit={handleSubmit}>
-        <label className="form-label">Nombre</label>
+        <label className="form-label">Nombre (ingrese el nombre sin espacios ni tildes)</label>
         <input className="form-input"
           type="text"
           onChange={(event) =>
