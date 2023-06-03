@@ -36,3 +36,48 @@ const Rating = () => {
 };
 
 export default Rating;
+
+
+
+// import React, { useState } from 'react';
+
+// const Rating = () => {
+//   const [ratings, setRatings] = useState([]);
+//   const [userRating, setUserRating] = useState(0);
+
+//   const handleStarClick = (selectedRating) => {
+//     setUserRating(selectedRating);
+//     setRatings([...ratings, selectedRating]);
+//   };
+
+//   const calculateAverageRating = () => {
+//     if (ratings.length === 0) {
+//       return 0;
+//     }
+//     const totalRating = ratings.reduce((sum, rating) => sum + rating, 0);
+//     return totalRating / ratings.length;
+//   };
+
+//   return (
+//     <div>
+//       <div>
+//         {[1, 2, 3, 4, 5].map((star) => (
+//           <span
+//             key={star}
+//             onClick={() => handleStarClick(star)}
+//             style={{
+//               cursor: 'pointer',
+//               color: star <= userRating ? 'gold' : 'gray',
+//             }}
+//           >
+//             ★
+//           </span>
+//         ))}
+//       </div>
+//       <p>Tu valoración: {userRating}</p>
+//       <p>Promedio de valoraciones: {calculateAverageRating()}</p>
+//     </div>
+//   );
+// };
+
+// export default Rating;

@@ -1,22 +1,38 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+
 
 const Registro = () => {
 
   const [user, setUser] = useState({
-    nombre: "",
-    apellido:"",
+    name: "",
+    lastName:"",
     email: "",
-    contrasenia:"",
-    verificarContrasenia:"",
+    password:"",
+    checkPassword:"",
 
 });
 const [formErrors, setFormErrors] = useState({
-    nombre: '',
-    apellido: '',
+    name: '',
+    lastName: '',
     email: '',
-    contrasenia: '',
-    verificarContrasenia: '',
+    password: '',
+    checkPassword: '',
   });
+
+
+  // useEffect(() => {
+  //   const storedEmail = localStorage.getItem("email");
+  //   const storedPassword = localStorage.getItem("password");
+
+  //   if (storedEmail && storedPassword) {
+  //     setUser({
+  //       ...user,
+  //       email: storedEmail,
+  //       contrasenia: storedPassword,
+  //       verificarContrasenia: storedPassword,
+  //     });
+  //   }
+  // }, []);
 
 
 
@@ -26,85 +42,85 @@ const [formErrors, setFormErrors] = useState({
 
     
       const validateForm = () => {
-        let valid = true;
+        let isValid = true;
         const errors = {
-          nombre: '',
-          apellido: '',
+          name: '',
+          lastName: '',
           email: '',
-          contrasenia: '',
-          verificarContrasenia: '',
+          password: '',
+          checkPassword: '',
         };
         const nameRegex = /^[a-zA-ZáÁéÉíÍóÓúÚñÑüÜ'][a-zA-ZáÁéÉíÍóÓúÚñÑüÜ\s']*$/;
 
-        // /^[a-zA-ZáÁéÉíÍóÓúÚñÑüÜ']{1}[a-zA-ZáÁéÉíÍóÓúÚñÑüÜ\s']*$/;
-
      
-  const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/; // Expresión regular para letras y números
+  const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/; 
     
-        if (!user.nombre) {
-          errors.nombre = 'El nombre es obligatorio';
-          valid = false;
-        }else if (user.nombre.trim() !== user.nombre) {
-          errors.nombre = 'El nombre no debe contener espacios al principio';
-          valid = false;
-          }else if (!nameRegex.test(user.nombre)) {
-            errors.nombre = 'El nombre contiene caracteres no válidos';
-            valid = false;
+        if (!user.name) {
+          errors.name = 'El nombre es obligatorio';
+          isValid = false;
+        }else if (user.name.trim() !== user.name) {
+          errors.name = 'El nombre no debe contener espacios al principio';
+          isValid = false;
+          }else if (!nameRegex.test(user.name)) {
+            errors.name = 'El nombre contiene caracteres no válidos';
+            isValid = false;
           }
 
 
-        if (!user.apellido) {
-          errors.apellido = 'El apellido es obligatorio';
-          valid = false;
-        }else if (user.apellido.trim() !== user.apellido) {
-            errors.apellido = 'El apellido no debe contener espacios al principio';
-            valid = false;
-        } else if (!nameRegex.test(user.apellido)) {
-            errors.apellido = 'El apellido contiene caracteres no válidos';
-            valid = false;
+        if (!user.lastName) {
+          errors.lastName = 'El apellido es obligatorio';
+          isValid = false;
+        }else if (user.lastName.trim() !== user.lastName) {
+            errors.lastName = 'El apellido no debe contener espacios al principio';
+            isValid = false;
+        } else if (!nameRegex.test(user.lastName)) {
+            errors.lastName = 'El apellido contiene caracteres no válidos';
+            isValid = false;
           }
     
         if (!user.email) {
           errors.email = 'El email es obligatorio';
-         valid = false; 
+         isValid = false; 
         } else if (!/\S+@\S+\.\S+/.test(user.email)) {
           errors.email = 'El email no es válido';
-          valid = false;
+          isValid = false;
         }
     
-        if (!user.contrasenia) {
-          errors.contrasenia = 'La contraseña es obligatoria';
-          valid = false;
-        }else if (user.contrasenia.trim() !== user.contrasenia) {
-            errors.contrasenia = 'La contraseña no debe contener espacios';
-            valid = false; 
-        } else if (user.contrasenia.length < 6) {
-            errors.contrasenia = 'La contraseña debe tener al menos 6 caracteres';
-            valid = false;
-        } else if (!passwordRegex.test(user.contrasenia)) {
-            errors.contrasenia = 'La contraseña debe contener letras y números';
-            valid = false;
+        if (!user.password) {
+          errors.password = 'La contraseña es obligatoria';
+          isValid = false;
+        }else if (user.password.trim() !== user.password) {
+            errors.password = 'La contraseña no debe contener espacios';
+            isValid = false; 
+        } else if (user.password.length < 6) {
+            errors.password = 'La contraseña debe tener al menos 6 caracteres';
+            isValid = false;
+        } else if (!passwordRegex.test(user.password)) {
+            errors.password = 'La contraseña debe contener letras y números';
+            isValid = false;
         
         }
 
-        if (!user.verificarContrasenia) {
-          errors.verificarContrasenia = 'Debes confirmar la contraseña';
-          valid = false;
-        }else if (user.verificarContrasenia.trim() !== user.verificarContrasenia) {
-            errors.verificarContrasenia = 'La contraseña no debe contener espacios al principio';
-            valid = false; 
-        } else if (user.contrasenia !== user.verificarContrasenia) {
-          errors.verificarContrasenia = 'Las contraseñas no coinciden';
-          valid = false;
+        if (!user.checkPassword) {
+          errors.checkPassword = 'Debes confirmar la contraseña';
+          isValid = false;
+        }else if (user.checkPassword.trim() !== user.checkPassword) {
+            errors.checkPassword = 'La contraseña no debe contener espacios al principio';
+            isValid = false; 
+        } else if (user.password !== user.checkPassword) {
+          errors.checkPassword = 'Las contraseñas no coinciden';
+          isValid = false;
         }
     
         setFormErrors(errors);
-        return valid;
+        return isValid;
       };
     
     
     
         if (validateForm()) {
+          localStorage.setItem("email", user.email);
+      localStorage.setItem("password", user.contrasenia);
           // Realizar acciones adicionales con los datos del formulario
           console.log('Formulario enviado:', user);
         } else {
@@ -167,3 +183,53 @@ const [formErrors, setFormErrors] = useState({
 };
 
 export default Registro;
+
+
+// const handleSubmit = async () => {
+//   const {
+//     productName,
+//     brand,
+//     productPrice,
+//     selectedCategory,
+//     selectedCategoryId,
+//     selectedCondition,
+//     description,
+//     selectedImage,
+//     fileName
+//   } = formData;
+
+//   const productData = {
+//     name: productName,
+//     brand: brand,
+//     price: productPrice,
+//     category: selectedCategory,
+//     idCategory: selectedCategoryId,
+//     state: selectedCondition,
+//     description: description,
+//     image: selectedImage,
+//     fileName: fileName,
+//   };
+//   console.log("Datos del producto:", productData);
+
+//   try {
+//     await axios.post(
+//       "http://localhost:8080/digitalbooking/product",
+//       productData
+//     );
+//     console.log("Producto registrado con éxito:", productData);
+
+//     // Reiniciar los campos del formulario después de enviar los datos
+//     setFormData({
+//       selectedCategory: "",
+//       selectedCondition: "",
+//       productName: "",
+//       productPrice: "",
+//       selectedImage: null,
+//       description: "",
+//       brand: "",
+//     });
+//   } catch (error) {
+//     console.log(error.response.data);
+//     console.error("Error al registrar el producto:", error);
+//   }
+// };
